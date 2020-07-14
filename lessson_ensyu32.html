@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <p>{{ message }}</p>
+    <p v-if="toggle">
+      <a v-bind:href="url">Vue.js公式サイト</a>
+    </p>
+    <ul>
+      <li v-for="language in languages">{{ language }}</li>
+    </ul>
+    <button v-on:click="clickHandler">click</button>
+    <input type="text" v-model="message">
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</body>
+
+</html>
+
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello',
+      url: 'https://jp.vuejs.org/',
+      toggle: true,
+      languages:['JavaScript', 'Ruby', 'Python']
+    },
+    methods: {
+      clickHandler: function() {
+        this.message = 'Clicked!'
+
+      }
+    }
+  })
+
+</script>
