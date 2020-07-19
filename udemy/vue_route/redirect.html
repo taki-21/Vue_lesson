@@ -9,33 +9,42 @@
 
 <body>
   <div id="app">
-    <router-link to='/top'>Go to Top</router-link>
-    <router-link to='/users/123'>Go to User</router-link>
+    <router-link to='/'>Home</router-link>
+    <router-link to='/a'>A</router-link>
+    <router-link to='/b'>B</router-link>
     <router-view></router-view>
   </div>
 
   <script src="https://unpkg.com/vue@2.6.10"></script>
   <script src="https://unpkg.com/vue-router@3.0.6"></script>
   <script>
-    const Top = { template: '<div>Top</div>'}
-    const User = { template: '<div>User {{ $route.params.userId }}</div>'}
+    const B = {
+      template: `
+        <div>
+          <h2>This is B.</h2>
+          <router-view></router-view>
+        </div>
+        `
+    }
 
     const router = new VueRouter({
-      routes: [           // 配列で記述
-      {
-        path: '/top',
-        component: Top
-      },
-      {
-        path: '/users/:userId',
-        component: User
-      }
+      routes: [ // 配列で記述
+        {
+          path: '/a',
+          redirect: {name: 'page-b'},
+        },
+        {
+          name: 'page-b',
+          path: '/b',
+          component: B
+        }
       ]
     })
 
     const app = new Vue({
       router: router
     }).$mount('#app')
+
   </script>
 </body>
 
